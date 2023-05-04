@@ -10,7 +10,9 @@ root = tk.Tk()
 root.title("Box Calculator")
 #getting screen width and height of display
 display_width = root.winfo_screenwidth()
+display_width = 600
 display_height = root.winfo_screenheight()
+display_height = 400
 #setting tkinter window size
 root.geometry("%dx%d" % (display_width, display_height))
 
@@ -29,12 +31,13 @@ def calculate_boxes():
             item_quantity = int(item[3])
 
             # Calculate the number of boxes needed for each dimension
-            width_boxes = int(item_width / box_width) + (1 if item_width % box_width != 0 else 0)
-            length_boxes = int(item_length / box_length) + (1 if item_length % box_length != 0 else 0)
-            height_boxes = int(item_height / box_height) + (1 if item_height % box_height != 0 else 0)
+            width_boxes = float(item_width / box_width)
+            length_boxes = float(item_length / box_length) 
+            height_boxes = float(item_height / box_height)
 
             total_boxes += width_boxes * length_boxes * height_boxes * item_quantity
 
+        total_boxes = "{:10.2f}".format(total_boxes)
         result_label.config(text=f"The total number of boxes needed is {total_boxes}")
     except ValueError:
         result_label.config(text="Please enter valid numbers")
@@ -169,5 +172,6 @@ result_label.grid(row=4, column=3)
 
 # Run the main
 root.mainloop()
+
 
 ```
